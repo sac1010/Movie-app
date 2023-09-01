@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
 
-module.exports = nextConfig
+module.exports = {
+  // Other Next.js configuration options...
+
+  images: {
+    domains: ["wookie.codesubmit.io"],
+  },
+};
