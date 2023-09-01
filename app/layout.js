@@ -11,10 +11,10 @@ import { SearchContext } from "./context";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Wookie Movies",
-  description: "Your next movie",
-};
+// export const metadata = {
+//   title: "Wookie Movies",
+//   description: "Your next movie",
+// };
 
 export default function RootLayout({ children }) {
   const [search, setSearch] = useState("")
