@@ -4,6 +4,8 @@ import { useTheme } from "next-themes";
 import light from "@/public/light.svg";
 import dark from "@/public/dark.svg";
 import Image from "next/image";
+import { createContext, useContext } from "react";
+
 
 export const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false);
@@ -19,7 +21,7 @@ export const ThemeSwitcher = () => {
 
   return (
     <button
-      className={`w-fit absolute right-5 top-2 p-2 rounded-md hover:scale-110 active:scale-100 duration-200 bg-black text-white dark:text-black dark:bg-white `}
+      className={`w-fit p-1 bg-black rounded-md hover:scale-110 active:scale-100 duration-200 text-white dark:text-black  `}
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
       {/* <Image
@@ -30,7 +32,7 @@ export const ThemeSwitcher = () => {
         height={24}
         priority
       /> */}
-      {theme === "light" ? "Dark" : "Light"}
+      {theme === "light" ? "🌙" : "🔆"}
     </button>
   );
 };
