@@ -62,7 +62,7 @@ export default function Home() {
                 <h1 className="my-4 text-3xl font-extrabold">{genre}</h1>
                 <div className="grid grid-cols-12 gap-6 md:gap-12 gap-y-20 md:gap-y-20">
                   {movies.map((movie) => {
-                    return <MovieCard {...movie} />;
+                    return <MovieCard key={movie.slug} {...movie} />;
                   })}
                 </div>
               </div>
@@ -72,7 +72,7 @@ export default function Home() {
       {searchData && search && (
         <div className="grid grid-cols-12 gap-6 md:gap-12 gap-y-20 md:gap-y-20">
           {searchData.map((movie) => {
-            return <MovieCard {...movie} />;
+            return <MovieCard key={movie.slug} {...movie} />;
           })}
         </div>
       )}
