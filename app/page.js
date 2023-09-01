@@ -16,7 +16,10 @@ export default function Home() {
     };
 
     const movieData = await axios(config);
+    console.log(movieData.data.movies)
     setData(movieData.data.movies);
+    const genres = []
+
   };
 
   useEffect(() => {
@@ -24,12 +27,13 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="md:mx-auto px-10 lg:w-[80%] w-full  my-10">
+    <div className="md:mx-auto px-10 lg:w-[80%] w-full pt-10">
       <div className="flex gap-10 flex-wrap justify-around">
         {data.map((movie) => {
           return <MovieCard {...movie} />;
         })}
       </div>
     </div>
+    
   );
 }
