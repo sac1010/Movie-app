@@ -24,7 +24,7 @@ const Navbar = () => {
       >
         Wookie Movies
       </Link>
-      <div className="flex gap-6">
+      <div className="flex items-center gap-6">
         <input
           onChange={(e) => {
             if (e.target.value.trim() === "") {
@@ -38,9 +38,9 @@ const Navbar = () => {
         />
         <button
           onClick={handleSearch}
-          className="p-2 rounded-md border border-black dark:border-white"
+          className="px-3 py-1 rounded-md border border-black dark:border-white"
         >
-          search
+          ⌕‍
         </button>
         <ThemeSwitcher />
       </div>

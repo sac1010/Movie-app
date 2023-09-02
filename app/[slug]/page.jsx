@@ -3,10 +3,13 @@ import axios from "axios";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import useLocalStorage from "../UseLocalStorage";
 
 const Movie = () => {
   const [data, setData] = useState();
   const params = useParams();
+  const [bookmarks, setBookmarks] = useLocalStorage("bookmarks", []);
+  const [bookmarked, setBookmarked] = useState(false);
 
   const { slug } = params;
 
@@ -22,11 +25,29 @@ const Movie = () => {
     const movieData = await axios(config);
     console.log(movieData.data);
     setData(movieData.data);
+    bookmarks.forEach((bookmark) => {
+      if (bookmark.slug === movieData.data.slug) {
+        setBookmarked(true);
+        return;
+      }
+    });
   };
 
   useEffect(() => {
     getMovie();
   }, []);
+
+  const handleBookmark = () => {
+    if (bookmarked) {
+      const filtered = bookmarks.filter((movie) => movie.slug !== data.slug);
+      setBookmarks(filtered);
+      setBookmarked(false);
+    }
+    if (!bookmarked) {
+      setBookmarks([...bookmarks, data]);
+      setBookmarked(true);
+    }
+  };
 
   return (
     <>
@@ -37,7 +58,12 @@ const Movie = () => {
               <Image layout="fill" src={data.backdrop} objectFit="cover" />
             )}
           </div>
-          <div className="font-bold text-2xl my-4">{`${data.title} `}</div>
+          <div className="font-bold text-2xl my-4 w-full flex justify-between">
+            {`${data.title} `}
+            <div className="text-lg font-semibold cursor-pointer dark:bg-black border p-2 px-4 rounded-lg" onClick={handleBookmark}>
+              {bookmarked ? "added to watchlist ✓" : "watchlist"}
+            </div>
+          </div>
           <div className="py-2"> {`(rating : ${data.imdb_rating}/10)`}</div>
           <div>{data.overview}</div>
           <div className="py-4">{`Cast: ${data.cast.join(", ")}`}</div>
