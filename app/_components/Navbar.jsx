@@ -43,6 +43,7 @@ const Navbar = () => {
           ⌕‍
         </button>
         <ThemeSwitcher />
+        <Link className="font-semibold hidden md:block" href={"/watchlist"}>Watchlist</Link>
       </div>
     </div>
   );
